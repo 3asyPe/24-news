@@ -7,13 +7,10 @@ def generate_random_string(size=10, chars=string.ascii_lowercase + string.digits
     return "".join(random.choice(chars) for _ in range(size))
 
 
-def get_upload_image_path(instance, filename: str, prefix: str,):
-    print(f"filename-{filename}")
-    print(f"prefix-{prefix}")
+def get_upload_image_path(instance, filename: str, prefix: str,) -> str:
     new_filename = generate_random_string()
     name, ext = get_filename_ext(filename)
     final_filename = f"{new_filename}{ext}"
-    print(f"FINAL NAME - {prefix}/{final_filename}")
     return f"{prefix}/{final_filename}"
 
 
