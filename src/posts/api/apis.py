@@ -1,8 +1,10 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+from posts.api.serializers import PostSerializer, ProductSerializer
+from posts.api.validators import CreateProductSerializer
 from posts.models import Post, Product
-from posts.serializers import PostSerializer, ProductSerializer
+from posts.services import get_create_product
 
 
 @api_view(["GET"])
@@ -40,31 +42,13 @@ def get_product_api(request, *args, **kwargs):
 @api_view(["POST"])
 def create_product_api(request):
     data = request.POST or request.data
-    description = data.get('description')
-    name = data.get('name')
-    price = data.get('price')
-    print(request.POST)
-    print(data)
-    if description is None:
-         return Response({"error": "Product description is required"}, status=400)
-    if name is None:
-        return Response({"error": "Product name is required"}, status=400)
-    if price is None:
-        return Response({"error": "Product price is required"}, status=400)
+    validator = CreateProductSerializer(data=data)
+    validator.is_valid(raise_exception=True)
 
     product = Product.objects.create(
-        description=description,
-        name=name,
-        price=price
+        description=data["description"],
+        name=data["name"],
+        price=data["price"],
     )
     serializer = ProductSerializer(instance=product)
     return Response(serializer.data, status=201)
-
-
-
-
-
-
-    
-
-
