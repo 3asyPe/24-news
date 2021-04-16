@@ -35,3 +35,36 @@ def get_product_api(request, *args, **kwargs):
     
     serializer = ProductSerializer(instance=product)
     return Response(serializer.data, status=200)
+
+
+@api_view(["POST"])
+def create_product_api(request):
+    data = request.POST or request.data
+    description = data.get('description')
+    name = data.get('name')
+    price = data.get('price')
+    print(request.POST)
+    print(data)
+    if description is None:
+         return Response({"error": "Product description is required"}, status=400)
+    if name is None:
+        return Response({"error": "Product name is required"}, status=400)
+    if price is None:
+        return Response({"error": "Product price is required"}, status=400)
+
+    product = Product.objects.create(
+        description=description,
+        name=name,
+        price=price
+    )
+    serializer = ProductSerializer(instance=product)
+    return Response(serializer.data, status=201)
+
+
+
+
+
+
+    
+
+
