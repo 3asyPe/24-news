@@ -5,3 +5,4 @@ from posts.models import Product
 
 
 admin.site.register(Post)
+admin.site.register(Product)

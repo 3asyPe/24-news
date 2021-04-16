@@ -15,11 +15,11 @@ class PostSerializer(serializers.ModelSerializer):
             "timestamp",
         ]
 
-class PostSerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = [
-            "discripswstion",
+            "description",
             "image",
             "name",
             "price",
