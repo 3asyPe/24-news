@@ -22,7 +22,7 @@ def get_post_api(request, *args, **kwargs):
     return Response(serializer.data, status=200)
 
 #HOMEWORK HERE
-#GET, POST, DELETE, PUT
+#GET, POST, DELETE, PUT - обновить (product.variable = variable)
 
 @api_view(["GET"])
 def get_product_api(request, *args, **kwargs):
@@ -52,3 +52,25 @@ def create_product_api(request):
     )
     serializer = ProductSerializer(instance=product)
     return Response(serializer.data, status=201)
+
+
+@api_view(["POST"])
+def delete_product_api(request):
+    data = request.POST or request.data #got id product
+    product_id = data.get('id') #saved in variable
+    if product_id is None:
+        return Response({"error": "Product id is required"}, status=400)
+    try:
+        product = Product.objects.get(id=product_id) #made request in data
+    except Product.DoesNotExist:
+        return Response({"error": f"product with id {product_id} does not exist"}, status=400)
+
+    product.delete()
+    return Response({"message": "deleted successfully"}, status=200)  # {} - empty json object
+    
+
+
+
+
+
+

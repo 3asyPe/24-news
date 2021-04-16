@@ -23,4 +23,5 @@ class ProductSerializer(serializers.ModelSerializer):
             "image",
             "name",
             "price",
+            "id"
         ]

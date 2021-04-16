@@ -10,3 +10,5 @@ class CreateProductSerializer(serializers.Serializer):
     def validate_description(self, value):
         if len(value) < 10:
             raise ValidationError("Description is too small")
+
+ 
