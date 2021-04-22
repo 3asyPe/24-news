@@ -11,4 +11,13 @@ class CreateProductSerializer(serializers.Serializer):
         if len(value) < 10:
             raise ValidationError("Description is too small")
 
+class UpdateProductSerializer(serializers.Serializer):
+    name = serializers.CharField()
+    price = serializers.IntegerField()
+    description = serializers.CharField()
+    id = serializers.IntegerField()
+
+
+
+
  
