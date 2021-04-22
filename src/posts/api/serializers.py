@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
 from posts.models import Post
-from posts.models import Product
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -13,15 +12,4 @@ class PostSerializer(serializers.ModelSerializer):
             "image",
             "update",
             "timestamp",
-        ]
-
-class ProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = [
-            "description",
-            "image",
-            "name",
-            "price",
-            "id"
         ]

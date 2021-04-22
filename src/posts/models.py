@@ -24,9 +24,3 @@ class Post(models.Model):
 
 
 #Creating new model
-class Product(models.Model):
-    description = models.TextField(max_length=255)
-    image = models.ImageField(upload_to=get_post_upload_image_path, blank=True, null=True)
-    name = models.TextField(max_length=65)
-    price = models.DecimalField(decimal_places=2, max_digits=10)
-    
