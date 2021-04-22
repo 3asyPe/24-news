@@ -19,6 +19,14 @@ def get_post_api(request, *args, **kwargs):
     serializer = PostSerializer(instance=post)
     return Response(serializer.data, status=200)
 
-#HOMEWORK HERE
-#GET, POST, DELETE, PUT - обновить (product.variable = variable)
+
+
+
+        
+    
+
+
+
+
+
 
