@@ -8,7 +8,6 @@ from categories.serializers import CategorySerializer
 @api_view(["GET"])
 def get_category_api(request):
     data = request.GET  #id
-    print(request.__dict__)
     id = data.get("id")
 
     if id is None:

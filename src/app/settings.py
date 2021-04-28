@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'accounts',
     'categories',
     'posts',
+    'tag',
 
     'rest_framework',
 ]
