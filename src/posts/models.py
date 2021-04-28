@@ -14,6 +14,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to=get_post_upload_image_path, blank=True, null=True)
     update = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+    tags = models.ManyToManyField('tag.Tag', related_name='posts', null=True, blank=True) #(related_name, где posts - название поля) , blank - пустое поле лакально, null - пустое поле в db
 
     class Meta:
         verbose_name = ("Post")
