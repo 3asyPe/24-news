@@ -3,6 +3,7 @@ from rest_framework.response import Response
 
 from posts.api.serializers import PostSerializer
 from posts.models import Post
+from posts.services import get_5_random_posts
 
 
 @api_view(["GET"])
@@ -18,6 +19,15 @@ def get_post_api(request, *args, **kwargs):
 
     serializer = PostSerializer(instance=post)
     return Response(serializer.data, status=200)
+
+
+@api_view(["GET"])
+def get_main_posts_api(request, *args, **kwargs):
+    posts = get_5_random_posts()
+    
+    serializer = PostSerializer(instance=posts, many=True)
+    return Response(serializer.data, status=200)
+
 
 
 
