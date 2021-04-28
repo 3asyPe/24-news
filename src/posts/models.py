@@ -8,13 +8,14 @@ User = settings.AUTH_USER_MODEL
 
 
 class Post(models.Model):
+    slug = models.SlugField(blank=True, default="") # имя отформатированное под url 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=50)
     content = models.TextField()
     image = models.ImageField(upload_to=get_post_upload_image_path, blank=True, null=True)
     update = models.DateTimeField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
-    tags = models.ManyToManyField('tag.Tag', related_name='posts', null=True, blank=True) #(related_name, где posts - название поля) , blank - пустое поле лакально, null - пустое поле в db
+    tags = models.ManyToManyField('tag.Tag', related_name='posts', blank=True) #(related_name, где posts - название поля) , blank - пустое поле лакально, null - пустое поле в db
 
     class Meta:
         verbose_name = ("Post")
@@ -22,6 +23,3 @@ class Post(models.Model):
 
     def __str__(self):
         return f"{self.title}"
-
-
-#Creating new model
