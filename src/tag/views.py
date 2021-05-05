@@ -1,10 +1,10 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+
 from tag.models import Tag
 from tag.serializers import TagSerializer, TagWithPostsSerializer
 from tag.services import get_top_tags
-
 
 
 @api_view(["GET"])

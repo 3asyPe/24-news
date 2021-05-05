@@ -1,9 +1,21 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
+from rest_framework import generics
 
 from posts.api.serializers import PostSerializer
 from posts.models import Post
 from posts.services import get_5_random_posts
+
+
+class PostsListPagination(generics.ListAPIView):
+    serializer_class = PostSerializer
+    pagination_class = PageNumberPagination
+
+    def get_queryset(self):
+        return Post.objects.order_by('-timestamp')
+
+
 
 
 @api_view(["GET"])
