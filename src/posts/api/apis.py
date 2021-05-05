@@ -29,14 +29,3 @@ def get_main_posts_api(request, *args, **kwargs):
     return Response(serializer.data, status=200)
 
 
-
-
-
-        
-    
-
-
-
-
-
-
